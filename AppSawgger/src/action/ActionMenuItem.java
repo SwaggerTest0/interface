@@ -23,11 +23,11 @@ public class ActionMenuItem implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch(this.nomMenu) {
 		case "Récupérer à partir de Git":
-			System.out.println("ff");
-			mf.initDialog(this.nomMenu);
+			mf.initGitDialog();
 			break;
 		case "Récupérer en ligne":
-			
+			System.out.println("rrr");
+			mf.initHTMLDialog();
 			break;
 		case "SQL":
 	

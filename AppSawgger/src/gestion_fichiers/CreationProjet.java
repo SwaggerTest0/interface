@@ -1,6 +1,8 @@
 package gestion_fichiers;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class CreationProjet {
 
@@ -8,17 +10,20 @@ public class CreationProjet {
 	File directory;
 	
 	public CreationProjet(String path) {
+		System.out.println(path);
 		this.path			= path;
-		this.directory 	= new File("path");
+		this.directory 	= new File(path);
 		creerRep();
 	}
 	
 	public void creerRep() {
-		if(!directory.exists()) {
+		System.out.println(!directory.exists());
+		if(!directory.exists() ) {
 			try{
-				directory.mkdir();
+				
+				directory.mkdirs();
 		    } 
-		    catch(SecurityException se){}        
+		    catch(Exception se){se.printStackTrace();}        
 		}
 	}
 	

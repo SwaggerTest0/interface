@@ -30,7 +30,7 @@ public class MainFrame extends JFrame{
 	public void firstDialog() {
 		BufferedReader br;
 		try {
-			br = new BufferedReader(new FileReader(System.getProperty("user.dir")+"\\donnees\\path.txt"));
+			br = new BufferedReader(new FileReader(System.getProperty("user.dir")+"\\donnees\\path.rbt"));
 			if (br.readLine() == null) {
 				 new OpenDialog(this);
 			}
@@ -51,11 +51,14 @@ public class MainFrame extends JFrame{
 		
 		
 		JMenu xml_json = new JMenu("XML/JSON");
+		
 		JMenuItem optionGit = new JMenuItem("Récupérer à partir de Git");
 		ActionMenuItem amiGit = new ActionMenuItem(optionGit, this);
 		optionGit.addActionListener(amiGit);
 		
 		JMenuItem optionHTML = new JMenuItem("Récupérer en ligne");
+		optionHTML.addActionListener(new ActionMenuItem(optionGit, this));
+		
 		xml_json.add(optionGit);
 		xml_json.add(optionHTML);
 		mode.add(xml_json);
@@ -68,8 +71,11 @@ public class MainFrame extends JFrame{
 		
 	}
 	
+	public void initHTMLDialog() {
+		HTMLDialog dHTML = new HTMLDialog(this);
+	}
 	
-	public void initDialog(String name) {
+	public void initGitDialog() {
 		GitDialog gd = new GitDialog(this);
 	}
 

@@ -9,7 +9,7 @@ public class RepertoirePrincipale {
 	
 	public RepertoirePrincipale(String path) {
 		this.path			= path;
-		this.directory 		= new File("path");
+		this.directory 		= new File(path);
 		System.out.print(path);
 		creerRep(directory);
 		creerRepData();
@@ -18,7 +18,6 @@ public class RepertoirePrincipale {
 	public void creerRep(File dir) { 
 		if(!dir.exists()) {
 			try{
-				System.out.print("dir ok");
 				dir.mkdirs();
 		    } 
 		    catch(SecurityException se){}        
@@ -26,7 +25,7 @@ public class RepertoirePrincipale {
 	}
 	
 	public void creerFichier(String pathFile) { 
-		File f = new File("pathFile");
+		File f = new File(pathFile);
 		if(!f.exists()) {
 			try{
 				f.createNewFile();
@@ -42,9 +41,7 @@ public class RepertoirePrincipale {
 		creerRep(repData);
 		creerFichier(pathRepData+"\\dataJSON.rbt");
 		creerFichier(pathRepData+"\\dataYAML.rbt");
-		creerFichier(pathRepData+"\\dataSQL.rbt");
-		
-		
+		creerFichier(pathRepData+"\\dataSQL.rbt");	
 	}
 	
 	public boolean exist() {
