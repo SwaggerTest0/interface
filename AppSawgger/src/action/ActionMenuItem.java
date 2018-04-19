@@ -22,6 +22,9 @@ public class ActionMenuItem implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(this.nomMenu) {
+		case "Project..":
+			mf.initOpenProjectDialog();
+			break;
 		case "Récupérer à partir de Git":
 			mf.initGitDialog();
 			break;

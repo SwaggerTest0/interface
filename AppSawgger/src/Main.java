@@ -7,6 +7,10 @@ import ihm.MainFrame;
 public class Main {
 
 	public static void main(String[] arg) {
-		MainFrame mF = new MainFrame();
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				new MainFrame();
+			}
+		});
 	}
 }

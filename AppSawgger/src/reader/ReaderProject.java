@@ -67,6 +67,22 @@ try {
 		}
 	}
 
+	public String getCurrentProject() {
+		return currentProject;
+	}
+
+	public void setCurrentProject(String currentProject) {
+		this.currentProject = currentProject;
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
 	public String getOutcome() {
 		return outcome;
 	}

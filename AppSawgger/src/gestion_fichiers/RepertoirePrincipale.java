@@ -10,7 +10,6 @@ public class RepertoirePrincipale {
 	public RepertoirePrincipale(String path) {
 		this.path			= path;
 		this.directory 		= new File(path);
-		System.out.print(path);
 		creerRep(directory);
 		creerRepData();
 	}
@@ -34,9 +33,12 @@ public class RepertoirePrincipale {
 		}
 	}
 	
+	public boolean isDirEmpty()  {
+		return this.directory.list().length==1;
+	}
 	
 	private void creerRepData() {
-		String pathRepData  = this.path+"\\data";
+		String pathRepData  = this.path+"\\.data";
 		File repData 		= new File(pathRepData);
 		creerRep(repData);
 		creerFichier(pathRepData+"\\dataJSON.rbt");

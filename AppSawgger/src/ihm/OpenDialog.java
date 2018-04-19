@@ -20,15 +20,18 @@ public class OpenDialog extends JDialog implements ActionListener{
 	
 	private JButton ok;
 	
-	protected String path;
-	protected JTextField tf;
+	private boolean b;
 	
-	public OpenDialog(MainFrame mf) {
+	private String path;
+	private JTextField tf;
+	
+	public OpenDialog(MainFrame mf, boolean b) {
 		super(mf);
 		setSize(400, 150);
 		setLocation(mf.getSize().height/2,mf.getSize().width/2);
 		this.setResizable(false);
 		initAll();
+		this.b = b;
 		setVisible(true);
 	}
 	
@@ -78,7 +81,10 @@ public class OpenDialog extends JDialog implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==ok) {
-			new ActionProjectWriter(tf.getText()+"\\SwaggerCompareProjects", "", "");
+			if(b)
+				new ActionProjectWriter(tf.getText()+"\\SwaggerCompareProjects", "", "");
+			else
+				new ActionProjectWriter(tf.getText(), "", "");
 			this.dispose();
 		} else {
 			JFileChooser chooser = new JFileChooser();    
@@ -90,7 +96,7 @@ public class OpenDialog extends JDialog implements ActionListener{
 	    	chooser.setAcceptAllFileFilterUsed(false);
 	    	
 	    	if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) { 
-	    		tf.setText(chooser.getCurrentDirectory().getAbsolutePath());
+	    		tf.setText(chooser.getSelectedFile().getAbsolutePath());
 	    	}
 		}
 	    

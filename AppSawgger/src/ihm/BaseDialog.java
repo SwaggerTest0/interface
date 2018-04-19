@@ -22,6 +22,9 @@ public abstract class BaseDialog extends JDialog implements ActionListener{
 	private JPanel pathPanel;
 	private JPanel namePanel;
 	
+	private MainFrame mf;
+	
+	private ProjectTree pt;
 	
 	private JButton ok;
 	
@@ -31,11 +34,13 @@ public abstract class BaseDialog extends JDialog implements ActionListener{
 	protected JTextField tfPath;
 	protected JTextField tfName;
 	
-	public BaseDialog(MainFrame mf) {
+	public BaseDialog(MainFrame mf, ProjectTree pt) {
 		super(mf);
 		setSize(450, 220);
 		setLocation(mf.getSize().height/2,mf.getSize().width/2);
 		this.setResizable(false);
+		this.pt = pt;
+		this.mf = mf;
 		initAll();
 		setVisible(true);
 	}
@@ -103,6 +108,10 @@ public abstract class BaseDialog extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==ok) {
 			new ActionProjectWriter(tfPath.getText(), this.tfName.getText(), mode);
+			if(pt==null) 
+				mf.createTree();
+			else
+				pt.refresh(tfName.getText());
 			this.dispose();
 		} else {
 			JFileChooser chooser = new JFileChooser();    
@@ -114,10 +123,18 @@ public abstract class BaseDialog extends JDialog implements ActionListener{
 	    	chooser.setAcceptAllFileFilterUsed(false);
 	    	
 	    	if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) { 
-	    		tfPath.setText(chooser.getCurrentDirectory().getAbsolutePath());
+	    		tfPath.setText(chooser.getSelectedFile().getAbsolutePath());
 	    	}
 		}
 	    
+	}
+
+	public JTextField getTfName() {
+		return tfName;
+	}
+
+	public void setTfName(JTextField tfName) {
+		this.tfName = tfName;
 	}
 
 	public JTextField getTf() {
@@ -127,5 +144,6 @@ public abstract class BaseDialog extends JDialog implements ActionListener{
 	public void setTf(JTextField tf) {
 		this.tfPath = tf;
 	}
+
 	
 }

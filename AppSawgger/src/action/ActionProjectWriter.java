@@ -23,7 +23,7 @@ public class ActionProjectWriter{
 	
 	public ActionProjectWriter(String path, String name, String mode) {
 		this.mode = mode;
-		this.path=path+name;
+		this.path=path+"\\"+name;
 		this.mainProject = isMainProject();
 		initRep();
 	}
@@ -50,11 +50,17 @@ public class ActionProjectWriter{
 			String[] s = this.path.split("\\\\");
 			write = s[s.length-1];
 			try {
-				new CreationProjet(path);
+				if(!new File(path).exists())
+					new CreationProjet(path);
 				
 				File file = new File(System.getProperty("user.dir")+"\\donnees\\current.rbt");
-				file.delete();
-				file.createNewFile();
+				
+				if(file.exists()) {
+					file.delete();
+					file.createNewFile();
+				} else
+					file.createNewFile();
+
 				FileWriter fileWriter = new FileWriter(System.getProperty("user.dir")+"\\donnees\\current.rbt");
 			    PrintWriter printWriter = new PrintWriter(fileWriter);
 			    printWriter.println(write);
